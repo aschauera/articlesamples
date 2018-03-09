@@ -1,0 +1,96 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "Project Geo Lookup",
+        "version": "1.0.0"
+    },
+    "host": "projectgeolookup.azurewebsites.net",
+    "basePath": "/",
+    "schemes": [
+        "https",
+        "http"
+    ],
+    "paths": {
+        "/api/ProjectDistanceCalculator": {
+            "post": {
+                "operationId": "CalculateCosts",
+                "description": "Determines logistics cost and distance",
+                "summary": "Calculates costs and distance",
+                "x-ms-summary": "Calculates costs and distance",
+                "x-ms-visibility": "important",
+                "produces": [
+                    "application/json"
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Latitude and longitude of issue",
+                        "x-ms-summary": "Lat and Long",
+                        "x-ms-visibility": "important",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "latProject": {
+                                    "description": "Latitude in decimal (eg. 48.12)",
+                                    "type": "number",
+                                    "x-ms-summary": "Latitude",
+                                    "x-ms-visibility": "important"
+                                },
+                                "longProject": {
+                                    "description": "Longitude in decimal (eg. 13.44)",
+                                    "type": "number",
+                                    "x-ms-summary": "Longitude",
+                                    "x-ms-visibility": "important"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Message with cost and distance",
+                        "x-ms-summary": "Message",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "message": {
+                                    "type": "string",
+                                    "description": "Formatted message",
+                                    "x-ms-summary": "Message"
+                                },
+                                "distance": {
+                                    "type": "string",
+                                    "description": "Distance",
+                                    "x-ms-summary": "distance"
+                                },
+                                "cost": {
+                                    "type": "string",
+                                    "description": "Logistic cost",
+                                    "x-ms-summary": "cost"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "apikeyQuery": []
+                    }
+                ]
+            }
+        }
+    },
+    "definitions": {},
+    "securityDefinitions": {
+        "apikeyQuery": {
+            "type": "apiKey",
+            "name": "code",
+            "in": "query"
+        }
+    }
+}
