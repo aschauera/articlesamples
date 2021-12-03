@@ -1,0 +1,176 @@
+[import](common.lg)
+
+# Image1Url()
+-https://contents.mediadecathlon.com/p1723343/k$4227d157de053dd76e68390a777abf47/tourenskischuhe-fischer-travers-ts.jpg?&f=800x800?&f=300x300
+# Image2Url()
+-https://contents.mediadecathlon.com/p1329545/k$0c81a2782ede0671f34d8844b298b9cb/tourenski-set-xld-rt-500-inkl-bindung-und-felle.jpg?&f=300x300
+# Image3Url()
+-https://contents.mediadecathlon.com/p1548891/k$2ad1a02a3bf7645966dfbead5cc7e67b/tourenrucksack-alpinism-22-liter-grau.jpg?&f=300x300
+
+
+# adaptivecardjson_orderissue(orderNumber,orderDate)
+- ```
+{
+    "type": "AdaptiveCard",
+    "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+    "version": "1.5",
+    "body": [
+        {
+            "type": "Container",
+            "items": [
+                {
+                    "type": "TextBlock",
+                    "text": "Bestelldaten",
+                    "wrap": true,
+                    "color": "Accent",
+                    "weight": "Bolder",
+                    "size": "Medium"
+                },
+                {
+                    "type": "TextBlock",
+                    "text": "Ihre Bestellung B1111 vom 01.01.2021",
+                    "wrap": true,
+                    "color": "Attention"
+                },
+                {
+                    "type": "TextBlock",
+                    "text": "Wählen sie den Artikel um den es sich handelt und das Problem.",
+                    "wrap": true
+                }
+            ]
+        },
+        {
+            "type": "ColumnSet",
+            "columns": [
+                {
+                    "type": "Column",
+                    "width": "stretch",
+                    "items": [
+                        {
+                            "type": "Image",
+                            "url": "${Image1Url()}"
+                        },
+                        {
+                            "type": "TextBlock",
+                            "text": "Fischer TRAVERS"
+                        },
+                        {
+                            "type": "ActionSet",
+                            "actions": [
+                                {
+                                    "type": "Action.ShowCard",
+                                    "title": "Wählen",
+                                    "card": {
+                                        "type": "AdaptiveCard",
+                                        "body": [
+                                            {
+                                                "type": "TextBlock",
+                                                "text": "Worum gehts?",
+                                                "size": "Medium",
+                                                "wrap": true
+                                            },
+                                            {
+                                                "type": "Input.ChoiceSet",
+                                                "id": "IssueType",
+                                                "style": "expanded",
+                                                "horizontalAlignment": "Left",
+                                                "choices": [
+                                                    {
+                                                        "title": "Defekt",
+                                                        "value": "Defekt"
+                                                    },
+                                                    {
+                                                        "title": "Fehlt",
+                                                        "value": "Fehlt"
+                                                    },
+                                                    {
+                                                        "title": "Passt nicht",
+                                                        "value": "Passt nicht"
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "type": "Input.Text",
+                                                "id": "IssueDescription",
+                                                "isMultiline": true,
+                                                "placeholder": "Kommentar"
+                                            }
+                                        ],
+                                        "actions": [
+                                            {
+                                                "type": "Action.Submit",
+                                                "title": "Erfassen",
+                                                "data": {
+                                                    "product": "Fischer TRAVERS"
+                                                }
+                                            }
+                                        ]
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "Column",
+                    "width": "stretch",
+                    "items": [
+                        {
+                            "type": "Image",
+                            "url": "${Image2Url()}"
+                        }, 
+                        {
+                            "type": "TextBlock",
+                            "text": "WEDZE Tourenski"
+                        },
+                        {
+                            "type": "ActionSet",
+                            "actions": [
+                                {
+                                    "type": "Action.ShowCard",
+                                    "title": "Wählen",
+                                    "card": {
+                                        "type": "AdaptiveCard"
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "Column",
+                    "width": "stretch",
+                    "items": [
+                        {
+                            "type": "Image",
+                            "url": "${Image3Url()}"
+                        },
+                        {
+                            "type": "TextBlock",
+                            "text": "Alpinism Rucksack"
+                        },
+                        {
+                            "type": "ActionSet",
+                            "actions": [
+                                {
+                                    "type": "Action.ShowCard",
+                                    "title": "Wählen",
+                                    "card": {
+                                        "type": "AdaptiveCard"
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "horizontalAlignment": "Center"
+        }
+    ]
+}
+```
+
+# OrderIssueCard(OrderNumber,OrderDate)
+[Activity
+    Attachments = ${json(adaptivecardjson_orderissue(orderNumber,orderDate))}
+]
